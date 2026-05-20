@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saad Durrani | Premium Portfolio Archetype</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES & SYSTEM RESET --- */
+        :root {
+            --bg-color: #f8f9fa;
+            --bg-darker: #ffffff;
+            --card-bg: #ffffff;
+            --primary-color: #0076ff;
+            --text-color: #1d1d1f;
+            --text-muted: #6e6e73;
+            --border-color: #e5e5ea;
+            --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            --card-shadow-hover: 0 20px 40px rgba(0, 118, 255, 0.08);
+            
+            /* Entry Screen Specific Premium Dark System */
+            --dark-entry-bg: #0b0f19;
+            --dark-card-bg: rgba(255, 255, 255, 0.03);
+            --dark-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        html, body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+        
+        body.no-scroll {
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section { padding: 100px 0; }
+        .bg-darker { background-color: var(--bg-darker); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+            position: relative;
+            letter-spacing: -0.5px;
+        }
+        .section-title::after {
+            content: ''; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%);
+            width: 40px; height: 3px; background-color: var(--primary-color); border-radius: 2px;
+        }
+
+        /* ACTIONS BUTTONS */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 36px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 2px solid transparent;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 14px rgba(0, 118, 255, 0.15);
+            transition: var(--transition);
+        }
+        .btn-primary { background-color: var(--primary-color); color: #fff; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0, 118, 255, 0.35); background-color: #0062d6; }
+        
+        .btn-secondary { border-color: var(--border-color); background-color: transparent; color: var(--text-color); box-shadow: none; }
+        .btn-secondary:hover { background-color: rgba(0, 0, 0, 0.02); transform: translateY(-2px); border-color: var(--text-muted); }
+
+        /* ==========================================
+           1. PREMIUM DARK ENTRY SCREEN (NO SCROLL)
+        ========================================== */
+        #entry-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            background: radial-gradient(circle at 50% 50%, #161c2d 0%, var(--dark-entry-bg) 100%);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.6s ease;
+        }
+
+        #entry-screen.fade-out {
+            transform: translateY(-100vh);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .entry-container {
+            text-align: center;
+            max-width: 650px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Orbit Apparatus Frame */
+        .avatar-orbit-box {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .center-avatar {
+            width: 155px;
+            height: 155px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            z-index: 10;
+            background: #11141d;
+        }
+        .center-avatar img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+
+        /* Rotating Dashed Pathway */
+        .dotted-circle {
+            position: absolute;
+            width: 230px;
+            height: 230px;
+            border: 2px dashed rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            animation: orbitRotate 28s linear infinite;
+        }
+
+        /* Official Corporate Tech Icons Configuration */
+        .orbit-icon {
+            position: absolute;
+            width: 42px;
+            height: 42px;
+            background: #1a2236;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+        /* Counter-rotation to keep icons straight and viewable during orbit rotation */
+        .orbit-icon i, .orbit-icon span {
+            animation: counterRotate 28s linear infinite;
+        }
+
+        /* Precise angles tracking around the circumference */
+        .o-1 { top: -21px; left: calc(50% - 21px); color: #61dafb; } /* React/JS Custom Coding */
+        .o-2 { top: 33px; right: -18px; color: #21759b; } /* WordPress Official Blueprint */
+        .o-3 { bottom: 33px; right: -18px; color: #92003B; } /* Elementor Primary Ruby */
+        .o-4 { bottom: -21px; left: calc(50% - 21px); color: #96bf48; } /* Shopify Eco-green */
+        .o-5 { bottom: 33px; left: -18px; color: #ff6600; } /* Avada Burst */
+        .o-6 { top: 33px; left: -18px; color: #172B4D; } /* Divi Elegant Violet */
+
+        @keyframes orbitRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes counterRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(-360deg); }
+        }
+
+        .entry-container h1 { font-size: 2.6rem; font-weight: 700; margin-bottom: 4px; color: #ffffff; letter-spacing: -0.5px; }
+        .entry-container h4 { color: var(--primary-color); font-weight: 500; font-size: 1.1rem; margin-bottom: 20px; letter-spacing: 0.5px; }
+        .entry-container p { color: #9aa8bc; font-size: 0.95rem; margin-bottom: 30px; line-height: 1.6; }
+
+        /* Social Node Grid Matrix */
+        .entry-socials { display: flex; gap: 16px; margin-bottom: 35px; }
+        .entry-socials a {
+            width: 46px; height: 46px; border-radius: 50%; background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--dark-border); display: flex; align-items: center; justify-content: center;
+            color: #9aa8bc; font-size: 1.1rem;
+        }
+        .entry-socials a:hover { transform: translateY(-4px); color: #ffffff; }
+        .entry-socials a.ln:hover { background: #0077b5; border-color: #0077b5; }
+        .entry-socials a.wa:hover { background: #25d366; border-color: #25d366; }
+        .entry-socials a.fb:hover { background: #1877f2; border-color: #1877f2; }
+
+        /* ==========================================
+           2. MAIN LIVE PORTFOLIO LAYER
+        ========================================== */
+        #main-portfolio {
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            padding-top: 80px;
+        }
+        #main-portfolio.show { opacity: 1; }
+
+        /* HIGH-FIDELITY NAVIGATION DESK */
+        .navbar {
+            position: fixed; top: 0; left: 0; width: 100%;
+            background-color: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            padding: 18px 0; z-index: 1000; border-bottom: 1px solid var(--border-color);
+        }
+        .navbar .container { display: flex; justify-content: space-between; align-items: center; }
+        
+        .logo-box { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.25rem; letter-spacing: -0.5px; }
+        .logo-box i { color: var(--primary-color); font-size: 1.4rem; }
+        .logo-box span { color: var(--primary-color); font-weight: 400; }
+
+        .nav-links { display: flex; gap: 28px; }
+        .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-muted); }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary-color); }
+        
+        .menu-toggle { display: none; font-size: 1.3rem; cursor: pointer; color: var(--text-color); }
+
+        /* THE HERO COMPONENT */
+        .hero {
+            height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center;
+            background: radial-gradient(circle at 80% 20%, rgba(0, 118, 255, 0.03) 0%, transparent 50%), var(--bg-darker);
+        }
+        .hero-content h1 { font-size: 3.8rem; font-weight: 700; margin-bottom: 20px; letter-spacing: -1.5px; line-height: 1.15; }
+        .hero-content h1 span { color: var(--primary-color); }
+        .hero-content p { max-width: 680px; margin: 0 auto 35px; font-size: 1.15rem; color: var(--text-muted); line-height: 1.6; }
+
+        /* ABOUT US SECTION - CONFIGURED WITH TWO-COLUMN USER DETAILS OVERVIEW */
+        .about-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .about-image-frame {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            border: 1px solid var(--border-color);
+            background: #f1f3f5;
+        }
+        .about-image-frame img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        .about-image-frame:hover img { transform: scale(1.03); }
+        
+        .about-text h3 { font-size: 1.8rem; font-weight: 700; margin-bottom: 20px; letter-spacing: -0.5px; }
+        .about-text p { font-size: 1rem; color: var(--text-muted); margin-bottom: 25px; line-height: 1.65; }
+
+        /* SERVICES SECTION SETUP */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+        .service-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 40px 30px;
+            border-radius: 16px;
+            transition: var(--transition);
+            box-shadow: var(--box-shadow);
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 118, 255, 0.15);
+            box-shadow: var(--card-shadow-hover);
+        }
+        .service-icon {
+            width: 55px; height: 55px; background: rgba(0, 118, 255, 0.05);
+            border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            color: var(--primary-color); font-size: 1.4rem; margin-bottom: 25px;
+        }
+        .service-card h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 12px; }
+        .service-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+
+        /* TECHNICAL EXPERTISE RATIOS */
+        .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+        .skill-bar-item { margin-bottom: 10px; }
+        .skill-bar-info { display: flex; justify-content: space-between; font-weight: 600; margin-bottom: 8px; font-size: 0.95rem; }
+        .bar-bg { width: 100%; height: 6px; background: var(--border-color); border-radius: 10px; overflow: hidden; }
+        .bar-fill { height: 100%; background: var(--primary-color); border-radius: 10px; }
+        
+        .company-logos-title { text-align: center; font-weight: 600; color: var(--text-muted); margin-bottom: 35px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; }
+        .logos-flex { display: flex; justify-content: center; align-items: center; gap: 60px; flex-wrap: wrap; opacity: 0.6; }
+        .brand-logo { font-size: 1.4rem; font-weight: 700; color: var(--text-color); display: flex; align-items: center; gap: 10px; }
+
+        /* CAREER PATH TIMELINE */
+        .exp-timeline { max-width: 850px; margin: 0 auto; position: relative; padding-left: 35px; border-left: 2px solid var(--border-color); }
+        .exp-card { background: var(--card-bg); padding: 30px; border-radius: 14px; border: 1px solid var(--border-color); margin-bottom: 30px; position: relative; box-shadow: var(--box-shadow); }
+        .exp-card::before { content: ''; position: absolute; top: 33px; left: -42px; width: 12px; height: 12px; background: var(--primary-color); border-radius: 50%; border: 3px solid var(--bg-color); }
+        .exp-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px; }
+        .exp-company { font-weight: 700; color: var(--primary-color); display: flex; align-items: center; gap: 8px; font-size: 1.1rem; }
+        .exp-card h4 { font-size: 1.2rem; font-weight: 600; margin-bottom: 8px; }
+        .exp-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+
+        /* PROJECTS DISPLAY PORTAL */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .project-card { background: var(--card-bg); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-color); box-shadow: var(--box-shadow); transition: var(--transition); }
+        .project-card:hover { transform: translateY(-8px); box-shadow: var(--card-shadow-hover); border-color: rgba(0, 118, 255, 0.15); }
+        .project-img { height: 220px; background-color: #f1f3f5; background-size: cover; background-position: center; }
+        .project-info { padding: 30px; }
+        .project-info h3 { margin-bottom: 12px; font-size: 1.3rem; font-weight: 600; }
+        .project-info p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+        .project-link { color: var(--primary-color); font-weight: 600; display: inline-flex; align-items: center; gap: 6px; margin-top: 20px; font-size: 0.9rem; }
+
+        /* SOCIAL VERIFIED CLIENTS REVIEWS */
+        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .review-card { background: var(--card-bg); padding: 40px 35px; border-radius: 16px; border: 1px solid var(--border-color); box-shadow: var(--box-shadow); position: relative; }
+        .review-card i.quote { position: absolute; top: 30px; right: 35px; font-size: 2.5rem; color: rgba(0, 118, 255, 0.06); }
+        .stars { color: #ffbc00; margin-bottom: 20px; font-size: 0.85rem; }
+        .review-card p { font-size: 0.98rem; color: var(--text-muted); line-height: 1.65; font-style: italic; }
+        .review-user-info { margin-top: 25px; border-top: 1px solid var(--border-color); padding-top: 20px; }
+        .review-user-info h4 { font-size: 1rem; font-weight: 600; color: var(--text-color); }
+        .review-user-info p { font-size: 0.8rem; color: var(--text-muted); not-italic; margin-top: 2px; font-style: normal; }
+
+        /* SECURE CONTACT ARCHITECTURE & SYSTEM SCHEMES */
+        .contact-layout { display: grid; grid-template-columns: 1fr 1.3fr; gap: 60px; }
+        .info-pane h3 { font-size: 1.7rem; font-weight: 700; margin-bottom: 15px; }
+        .info-pane p { color: var(--text-muted); margin-bottom: 35px; line-height: 1.6; }
+        .detail-item { display: flex; align-items: center; gap: 18px; margin-bottom: 30px; }
+        .detail-item i { width: 44px; height: 44px; background: rgba(0, 118, 255, 0.05); color: var(--primary-color); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+        .detail-item h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); }
+        .detail-item p { font-size: 1rem; font-weight: 600; color: var(--text-color); margin-bottom: 0; }
+        
+        .contact-form { display: flex; flex-direction: column; gap: 22px; }
+        .form-ctrl input, .form-ctrl select, .form-ctrl textarea {
+            width: 100%; padding: 16px 20px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; outline: none; font-size: 0.95rem; color: var(--text-color); transition: var(--transition);
+        }
+        .form-ctrl input:focus, .form-ctrl select:focus, .form-ctrl textarea:focus { border-color: var(--primary-color); box-shadow: 0 0 0 4px rgba(0, 118, 255, 0.08); }
+
+        /* THE CONSOLE FOOTER */
+        footer { background: var(--bg-darker); padding: 50px 0; text-align: center; border-top: 1px solid var(--border-color); }
+        footer p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px; }
+        .foot-socials a { margin: 0 12px; color: var(--text-muted); font-size: 1.2rem; }
+        .foot-socials a:hover { color: var(--primary-color); }
+
+        /* SYSTEM RESPONSIVE MEDIA QUERIES */
+        @media (max-width: 991px) {
+            .about-wrapper, .contact-layout { grid-template-columns: 1fr; gap: 40px; }
+            .about-image-frame { max-width: 450px; margin: 0 auto; }
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute; top: 71px; right: 0; width: 100%; background: var(--card-bg);
+                flex-direction: column; align-items: center; padding: 35px 0; gap: 24px;
+                transform: translateY(-170%); border-bottom: 1px solid var(--border-color); box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+            }
+            .nav-links.active { transform: translateY(0); }
+            .menu-toggle { display: block; }
+            .hero-content h1 { font-size: 2.6rem; letter-spacing: -1px; }
+            .skills-grid { grid-template-columns: 1fr; gap: 25px; }
+            .logos-flex { gap: 35px; }
+        }
+    </style>
+</head>
+<body class="no-scroll">
+ 
+    <div id="entry-screen">
+        <div class="entry-container">
+            <div class="avatar-orbit-box">
+                <div class="dotted-circle">
+                    <div class="orbit-icon o-1"><i class="fab fa-js-square" title="JavaScript Coding"></i></div>
+                    <div class="orbit-icon o-2"><i class="fab fa-wordpress" title="WordPress Engine"></i></div>
+                    <div class="orbit-icon o-3"><i class="fab fa-elementor" title="Elementor Professional"></i></div>
+                    <div class="orbit-icon o-4"><i class="fab fa-shopify" title="Shopify Architecture"></i></div>
+                    <div class="orbit-icon o-5"><span>AV</span></div>
+                    <div class="orbit-icon o-6"><span>DV</span></div>
+                </div>
+                <div class="center-avatar">
+                    <img src="https://homedecorcozy.com/wp-content/uploads/2026/03/saad-durrani.png" alt="Saad Durrani Identity Photo">
+                </div>
+            </div>
+
+            <h1>Saad Durrani</h1>
+            <h4>Full-Stack Developer</h4>
+            <p>Full-Stack Developer | WordPress & Shopify Expert | SEO Strategist | Lead Generation Specialist | Founder @ HomeDecorCozy.</p>
+            
+            <div class="entry-socials">
+                <a href="https://pk.linkedin.com/in/saad-durrani-developer" target="_blank" class="ln"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://wa.me/923083861749" target="_blank" class="wa"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.facebook.com/saaddurranideveloper/" target="_blank" class="fb"><i class="fab fa-facebook-f"></i></a>
+            </div>
+
+            <button class="btn btn-primary" onclick="enterPortfolio()">View Portfolio <i class="fas fa-arrow-right" style="margin-left: 8px; font-size: 0.85rem;"></i></button>
+        </div>
+    </div>
+
+
+    <div id="main-portfolio">
+        
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo-box">
+                     <i class="fas fa-cubes"></i> SAAD<span>DURRANI</span>
+                </div>
+                <div class="menu-toggle" id="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#portfolio">Work</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <section id="home" class="hero">
+            <div class="container hero-content">
+                <h1>Transforming Concepts Into <br><span>Digital Realities</span></h1>
+                <p>Full-stack digital architecture engineered with performance-first methodologies, structural scalability, and elegant layout layouts.</p>
+                <a href="#contact" class="btn btn-primary">Initiate Project</a>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-wrapper">
+                    <div class="about-image-frame">
+                        <img src="https://homedecorcozy.com/wp-content/uploads/2026/03/saad-durrani.png" alt="Saad Durrani Live Snapshot">
+                    </div>
+                    <div class="about-text">
+                        <h3>Specialized Engineering & Web Integration</h3>
+                        <p>With comprehensive domain expertise extending across semantic code structures, open-source content control management systems, and specialized standalone configurations, I engineer front-end deployments that maintain extreme fidelity on high-density viewports.</p>
+                        <p>Every implementation prioritizes asset optimization, clean layout delivery, and lightning-fast rendering profiles to give your visitors an unparalleled interactive experience.</p>
+                        <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="section bg-darker">
+            <div class="container">
+                <h2 class="section-title">Services Offered</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-code"></i></div>
+                        <h3>Custom Development</h3>
+                        <p>Clean HTML5, CSS3, and JavaScript integration tailored precisely to mimic high-end responsive prototypes.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fab fa-wordpress"></i></div>
+                        <h3>WordPress Ecosystems</h3>
+                        <p>Complete custom design-to-theme development using robust page builders like Elementor, Divi, and Avada.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-shopping-bag"></i></div>
+                        <h3>E-Commerce Engineering</h3>
+                        <p>High-converting, scalable online shop setups built on top of Shopify and WooCommerce configurations.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-search-dollar"></i></div>
+                        <h3>SEO & Page Optimization</h3>
+                        <p>Technical search engine enhancements, schema layouts tuning, and core web vitals optimization.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <div class="container">
+                <h2 class="section-title">Technical Expertise</h2>
+                <div class="skills-grid">
+                    <div class="skill-bar-item">
+                        <div class="skill-bar-info"><span>Core Frontend Programming (HTML5, CSS3, JS)</span><span>95%</span></div>
+                        <div class="bar-bg"><div class="bar-fill" style="width: 95%"></div></div>
+                    </div>
+                    <div class="skill-bar-item">
+                        <div class="skill-bar-info"><span>WordPress Lifecycle Architecture</span><span>90%</span></div>
+                        <div class="bar-bg"><div class="bar-fill" style="width: 90%"></div></div>
+                    </div>
+                    <div class="skill-bar-item">
+                        <div class="skill-bar-info"><span>E-Commerce Integration (Shopify/WooCommerce)</span><span>85%</span></div>
+                        <div class="bar-bg"><div class="bar-fill" style="width: 85%"></div></div>
+                    </div>
+                    <div class="skill-bar-item">
+                        <div class="skill-bar-info"><span>Visual Builders (Elementor, Divi, Avada)</span><span>92%</span></div>
+                        <div class="bar-bg"><div class="bar-fill" style="width: 92%"></div></div>
+                    </div>
+                </div>
+
+                <div class="company-logos-title">Supported Core Ecosystems Patches</div>
+                <div class="logos-flex">
+                    <div class="brand-logo"><i class="fab fa-wordpress-simple"></i> WordPress</div>
+                    <div class="brand-logo"><i class="fab fa-shopify"></i> Shopify</div>
+                    <div class="brand-logo"><i class="fab fa-elementor"></i> Elementor</div>
+                    <div class="brand-logo"><i class="fab fa-js-square"></i> JavaScript</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section bg-darker">
+            <div class="container">
+                <h2 class="section-title">Professional Path</h2>
+                <div class="exp-timeline">
+                    <div class="exp-card">
+                        <div class="exp-header">
+                            <div class="exp-company"><i class="fas fa-building"></i> Yoan Systems</div>
+                            <span>2024 - Present</span>
+                        </div>
+                        <h4>Senior Web Developer</h4>
+                        <p style="margin-top: 10px;">Overseeing premium structural logic deployment, optimizing technical search algorithms (SEO structures), and handling full-scale design-to-code components conversion.</p>
+                    </div>
+                    <div class="exp-card">
+                        <div class="exp-header">
+                            <div class="exp-company"><i class="fas fa-store"></i> Home Decor Cozy</div>
+                            <span>2026 - Present</span>
+                        </div>
+                        <h4>Founder & Digital Architect</h4>
+                        <p style="margin-top: 10px;">Formulating identity platforms and optimizing user journeys (UI/UX parameters) to drive conversion architectures for target e-commerce sectors.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="section">
+            <div class="container">
+                <h2 class="section-title">Recent Systems</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                        <div class="project-info">
+                            <h3>Dental Portal Platform</h3>
+                            <p>Optimized dental platform engineered for explicit lead generation targets within global dental care niches.</p>
+                            <a href="#" class="project-link">Explore Case Study <i class="fas fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                        <div class="project-info">
+                            <h3>Dynamic Trading Matrix</h3>
+                            <p>High fidelity dynamic analytical tracking board with real-time tracking layout components.</p>
+                            <a href="#" class="project-link">Explore Case Study <i class="fas fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="reviews" class="section bg-darker">
+            <div class="container">
+                <h2 class="section-title">Client Feedback</h2>
+                <div class="reviews-grid">
+                    <div class="review-card">
+                        <i class="fas fa-quote-right quote"></i>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p>"Saad handled our technical migration seamlessly. Site speeds improved exponentially, resulting in immediate organic traffic boosts."</p>
+                        <div class="review-user-info">
+                            <h4>Medical Systems UK</h4>
+                            <p>Executive Manager</p>
+                        </div>
+                    </div>
+                    <div class="review-card">
+                        <i class="fas fa-quote-right quote"></i>
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p>"Flawless theme customization. He integrated complex custom code blocks without disrupting core functionalities."</p>
+                        <div class="review-user-info">
+                            <h4>E-Commerce Ventures</h4>
+                            <p>Operations Lead</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="section-title">Connect</h2>
+                <div class="contact-layout">
+                    <div class="info-pane">
+                        <h3>Let's build something exceptional</h3>
+                        <p>Available for premium enterprise collaborations, custom platform development, and design optimization projects.</p>
+                        
+                        <div class="detail-item">
+                            <i class="fas fa-envelope"></i>
+                            <div><h4>Email</h4><p>saaddurranideveloper@gmail.com</p></div>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-phone"></i>
+                            <div><h4>Phone</h4><p>+92 308 3861749</p></div>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div><h4>Location</h4><p>Bahawalpur, Punjab, Pakistan</p></div>
+                        </div>
+                    </div>
+                    
+                    <form class="contact-form" onsubmit="event.preventDefault(); alert('Message logged successfully.');">
+                        <div class="form-ctrl"><input type="text" placeholder="Your Name" required></div>
+                        <div class="form-ctrl"><input type="email" placeholder="Your Email" required></div>
+                        <div class="form-ctrl">
+                            <select>
+                                <option value="" disabled selected>Project Scope</option>
+                                <option value="custom">Custom Web Development</option>
+                                <option value="wp">WordPress Solutions</option>
+                                <option value="seo">SEO Optimization</option>
+                            </select>
+                        </div>
+                        <div class="form-ctrl"><textarea rows="5" placeholder="Your Specifications" required></textarea></div>
+                        <button type="submit" class="btn btn-primary">Transmit Request</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2026 Saad Durrani. All rights reserved.</p>
+                <div class="foot-socials">
+                    <a href="https://pk.linkedin.com/in/saad-durrani-developer" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://wa.me/923083861749" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.facebook.com/saaddurranideveloper/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        // TRIGGER ENTRY TRANSITION LAYER
+        function enterPortfolio() {
+            const entryScreen = document.getElementById('entry-screen');
+            const mainPortfolio = document.getElementById('main-portfolio');
+            
+            entryScreen.classList.add('fade-out');
+            document.body.classList.remove('no-scroll');
+            mainPortfolio.classList.add('show');
+        }
+
+        // Mobile Nav Bar Menu Toggle
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.className = 'fas fa-times';
+            } else {
+                icon.className = 'fas fa-bars';
+            }
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.querySelector('i').className = 'fas fa-bars';
+            });
+        });
+
+        // Dynamic Highlighting on Window Scroll Event Handler
+        const sections = document.querySelectorAll('section');
+        const navLi = document.querySelectorAll('.nav-links li a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLi.forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href').includes(current)) {
+                    a.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
