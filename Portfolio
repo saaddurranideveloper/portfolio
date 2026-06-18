@@ -3,703 +3,701 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saad Durrani | Premium Portfolio Archetype</title>
+    <title>Alexa Hugeh | Sustainable Knitwear & Design</title>
+    <!-- Icons for social & menu -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
-        /* --- CSS VARIABLES & SYSTEM RESET --- */
+        /* === RESET & GLOBAL === */
         :root {
-            --bg-color: #f8f9fa;
-            --bg-darker: #ffffff;
-            --card-bg: #ffffff;
-            --primary-color: #0076ff;
-            --text-color: #1d1d1f;
-            --text-muted: #6e6e73;
-            --border-color: #e5e5ea;
-            --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-            --card-shadow-hover: 0 20px 40px rgba(0, 118, 255, 0.08);
-            
-            /* Entry Screen Specific Premium Dark System */
-            --dark-entry-bg: #0b0f19;
-            --dark-card-bg: rgba(255, 255, 255, 0.03);
-            --dark-border: rgba(255, 255, 255, 0.08);
+            --primary-color: #8b263e; /* Maroon palette */
+            --secondary-color: #2c3e50; 
+            --light-bg: #fdfdfd;
+            --text-dark: #222;
+            --text-light: #666;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --header-height: 80px;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             scroll-behavior: smooth;
         }
 
-        html, body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
             overflow-x: hidden;
         }
-        
-        body.no-scroll {
-            overflow: hidden;
-            height: 100vh;
-        }
 
-        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        h1, h2, h3 { color: var(--secondary-color); margin-bottom: 15px; font-weight: 700; }
+        p { color: var(--text-light); margin-bottom: 20px; font-size: 1rem; }
+        a { text-decoration: none; transition: var(--transition); color: inherit; }
         ul { list-style: none; }
-        img { max-width: 100%; display: block; }
 
-        .container {
-            max-width: 1140px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .section { padding: 100px 0; }
-        .bg-darker { background-color: var(--bg-darker); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+        /* === REUSABLE COMPONENTS === */
+        .section-padding { padding: 100px 8%; }
         
-        .section-title {
-            text-align: center;
-            font-size: 2.4rem;
-            font-weight: 700;
-            margin-bottom: 60px;
-            position: relative;
-            letter-spacing: -0.5px;
-        }
-        .section-title::after {
-            content: ''; position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%);
-            width: 40px; height: 3px; background-color: var(--primary-color); border-radius: 2px;
-        }
-
-        /* ACTIONS BUTTONS */
         .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 14px 36px;
-            border-radius: 50px;
+            display: inline-block;
+            padding: 12px 35px;
+            background-color: var(--primary-color);
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 13px;
             font-weight: 600;
+            letter-spacing: 1px;
+            border: 2px solid var(--primary-color);
             cursor: pointer;
-            border: 2px solid transparent;
-            font-size: 0.95rem;
-            box-shadow: 0 4px 14px rgba(0, 118, 255, 0.15);
             transition: var(--transition);
         }
-        .btn-primary { background-color: var(--primary-color); color: #fff; }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0, 118, 255, 0.35); background-color: #0062d6; }
-        
-        .btn-secondary { border-color: var(--border-color); background-color: transparent; color: var(--text-color); box-shadow: none; }
-        .btn-secondary:hover { background-color: rgba(0, 0, 0, 0.02); transform: translateY(-2px); border-color: var(--text-muted); }
 
-        /* ==========================================
-           1. PREMIUM DARK ENTRY SCREEN (NO SCROLL)
-        ========================================== */
-        #entry-screen {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100vh;
-            background: radial-gradient(circle at 50% 50%, #161c2d 0%, var(--dark-entry-bg) 100%);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.6s ease;
+        .btn:hover {
+            background-color: transparent;
+            color: var(--primary-color);
+            transform: translateY(-3px);
         }
 
-        #entry-screen.fade-out {
-            transform: translateY(-100vh);
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .entry-container {
+        .section-header {
             text-align: center;
-            max-width: 650px;
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            margin-bottom: 70px;
         }
 
-        /* Orbit Apparatus Frame */
-        .avatar-orbit-box {
+        .section-header h2 {
+            font-size: 3rem;
             position: relative;
-            width: 280px;
-            height: 280px;
-            margin-bottom: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: inline-block;
+            padding-bottom: 15px;
+            color: var(--text-dark);
         }
 
-        .center-avatar {
-            width: 155px;
-            height: 155px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 4px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-            z-index: 10;
-            background: #11141d;
-        }
-        .center-avatar img {
-            width: 100%; height: 100%; object-fit: cover;
-        }
-
-        /* Rotating Dashed Pathway */
-        .dotted-circle {
+        .section-header h2::after {
+            content: '';
             position: absolute;
-            width: 230px;
-            height: 230px;
-            border: 2px dashed rgba(255, 255, 255, 0.15);
-            border-radius: 50%;
-            animation: orbitRotate 28s linear infinite;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color);
         }
 
-        /* Official Corporate Tech Icons Configuration */
-        .orbit-icon {
-            position: absolute;
-            width: 42px;
-            height: 42px;
-            background: #1a2236;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease;
-        }
-        /* Counter-rotation to keep icons straight and viewable during orbit rotation */
-        .orbit-icon i, .orbit-icon span {
-            animation: counterRotate 28s linear infinite;
-        }
-
-        /* Precise angles tracking around the circumference */
-        .o-1 { top: -21px; left: calc(50% - 21px); color: #61dafb; } /* React/JS Custom Coding */
-        .o-2 { top: 33px; right: -18px; color: #21759b; } /* WordPress Official Blueprint */
-        .o-3 { bottom: 33px; right: -18px; color: #92003B; } /* Elementor Primary Ruby */
-        .o-4 { bottom: -21px; left: calc(50% - 21px); color: #96bf48; } /* Shopify Eco-green */
-        .o-5 { bottom: 33px; left: -18px; color: #ff6600; } /* Avada Burst */
-        .o-6 { top: 33px; left: -18px; color: #172B4D; } /* Divi Elegant Violet */
-
-        @keyframes orbitRotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        @keyframes counterRotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(-360deg); }
-        }
-
-        .entry-container h1 { font-size: 2.6rem; font-weight: 700; margin-bottom: 4px; color: #ffffff; letter-spacing: -0.5px; }
-        .entry-container h4 { color: var(--primary-color); font-weight: 500; font-size: 1.1rem; margin-bottom: 20px; letter-spacing: 0.5px; }
-        .entry-container p { color: #9aa8bc; font-size: 0.95rem; margin-bottom: 30px; line-height: 1.6; }
-
-        /* Social Node Grid Matrix */
-        .entry-socials { display: flex; gap: 16px; margin-bottom: 35px; }
-        .entry-socials a {
-            width: 46px; height: 46px; border-radius: 50%; background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--dark-border); display: flex; align-items: center; justify-content: center;
-            color: #9aa8bc; font-size: 1.1rem;
-        }
-        .entry-socials a:hover { transform: translateY(-4px); color: #ffffff; }
-        .entry-socials a.ln:hover { background: #0077b5; border-color: #0077b5; }
-        .entry-socials a.wa:hover { background: #25d366; border-color: #25d366; }
-        .entry-socials a.fb:hover { background: #1877f2; border-color: #1877f2; }
-
-        /* ==========================================
-           2. MAIN LIVE PORTFOLIO LAYER
-        ========================================== */
-        #main-portfolio {
+        /* === SCROLL ANIMATION CLASSES === */
+        .reveal {
+            position: relative;
             opacity: 0;
-            transition: opacity 0.8s ease;
-            padding-top: 80px;
+            transition: 0.8s all ease;
         }
-        #main-portfolio.show { opacity: 1; }
-
-        /* HIGH-FIDELITY NAVIGATION DESK */
-        .navbar {
-            position: fixed; top: 0; left: 0; width: 100%;
-            background-color: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            padding: 18px 0; z-index: 1000; border-bottom: 1px solid var(--border-color);
-        }
-        .navbar .container { display: flex; justify-content: space-between; align-items: center; }
+        .reveal.fade-bottom { transform: translateY(50px); }
+        .reveal.fade-left { transform: translateX(-50px); }
+        .reveal.fade-right { transform: translateX(50px); }
         
-        .logo-box { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.25rem; letter-spacing: -0.5px; }
-        .logo-box i { color: var(--primary-color); font-size: 1.4rem; }
-        .logo-box span { color: var(--primary-color); font-weight: 400; }
-
-        .nav-links { display: flex; gap: 28px; }
-        .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-muted); }
-        .nav-links a:hover, .nav-links a.active { color: var(--primary-color); }
-        
-        .menu-toggle { display: none; font-size: 1.3rem; cursor: pointer; color: var(--text-color); }
-
-        /* THE HERO COMPONENT */
-        .hero {
-            height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center;
-            background: radial-gradient(circle at 80% 20%, rgba(0, 118, 255, 0.03) 0%, transparent 50%), var(--bg-darker);
+        .reveal.active {
+            transform: translate(0, 0);
+            opacity: 1;
         }
-        .hero-content h1 { font-size: 3.8rem; font-weight: 700; margin-bottom: 20px; letter-spacing: -1.5px; line-height: 1.15; }
-        .hero-content h1 span { color: var(--primary-color); }
-        .hero-content p { max-width: 680px; margin: 0 auto 35px; font-size: 1.15rem; color: var(--text-muted); line-height: 1.6; }
 
-        /* ABOUT US SECTION - CONFIGURED WITH TWO-COLUMN USER DETAILS OVERVIEW */
-        .about-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1.3fr;
-            gap: 60px;
+        /* === 1. ULTRA-RESPONSIVE HEADER === */
+        header {
+            height: var(--header-height);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 8%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+            transition: var(--transition);
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: 1.5px;
+            color: var(--text-dark);
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
             align-items: center;
         }
-        .about-image-frame {
+
+        .nav-links li { margin-left: 30px; }
+
+        .nav-links a {
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--text-dark);
+            text-transform: uppercase;
+            letter-spacing: 1px;
             position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: var(--box-shadow);
-            border: 1px solid var(--border-color);
-            background: #f1f3f5;
+            padding-bottom: 5px;
         }
-        .about-image-frame img {
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: var(--primary-color); }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            color: var(--text-dark);
+            cursor: pointer;
+            z-index: 1001;
+            transition: var(--transition);
+        }
+
+        /* === 2. HERO SECTION === */
+        .hero {
+            height: 100vh;
+            /* Updated to a premium, fast-loading fashion textures background */
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.pexels.com/photos/5705490/pexels-photo-5705490.jpeg?auto=compress&cs=tinysrgb&w=1600') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            padding-top: var(--header-height);
+        }
+
+        .hero-content {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.5s;
+        }
+
+        .hero-content h1 {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* === 3. ABOUT OWNER === */
+        .about { background-color: #fff; }
+        .about-container { display: flex; align-items: center; gap: 70px; }
+        
+        .about-image { 
+            flex: 1; 
+            text-align: center;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            background-color: #fff;
+        }
+        
+        .about-image img {
             width: 100%;
             height: auto;
-            object-fit: cover;
+            max-height: 550px;
+            display: block;
+            object-fit: contain; 
             transition: var(--transition);
         }
-        .about-image-frame:hover img { transform: scale(1.03); }
-        
-        .about-text h3 { font-size: 1.8rem; font-weight: 700; margin-bottom: 20px; letter-spacing: -0.5px; }
-        .about-text p { font-size: 1rem; color: var(--text-muted); margin-bottom: 25px; line-height: 1.65; }
+        .about-image:hover img {
+            transform: scale(1.03);
+        }
 
-        /* SERVICES SECTION SETUP */
-        .services-grid {
+        .about-text { flex: 1.5; }
+        .about-text h3 { font-size: 2rem; }
+        .about-text p { font-size: 1.1rem; line-height: 1.9; }
+
+        /* === 4. MISSION & DESIGN PHILOSOPHY === */
+        .mission { background-color: var(--light-bg); text-align: center; }
+        .mission-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
         }
-        .service-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 40px 30px;
-            border-radius: 16px;
+        .mission-item {
+            background-color: #fff;
+            padding: 50px 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
             transition: var(--transition);
-            box-shadow: var(--box-shadow);
         }
-        .service-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(0, 118, 255, 0.15);
-            box-shadow: var(--card-shadow-hover);
+        .mission-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
-        .service-icon {
-            width: 55px; height: 55px; background: rgba(0, 118, 255, 0.05);
-            border-radius: 12px; display: flex; align-items: center; justify-content: center;
-            color: var(--primary-color); font-size: 1.4rem; margin-bottom: 25px;
+        .mission-item i {
+            font-size: 40px;
+            color: var(--primary-color);
+            margin-bottom: 25px;
         }
-        .service-card h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 12px; }
-        .service-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
 
-        /* TECHNICAL EXPERTISE RATIOS */
-        .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; }
-        .skill-bar-item { margin-bottom: 10px; }
-        .skill-bar-info { display: flex; justify-content: space-between; font-weight: 600; margin-bottom: 8px; font-size: 0.95rem; }
-        .bar-bg { width: 100%; height: 6px; background: var(--border-color); border-radius: 10px; overflow: hidden; }
-        .bar-fill { height: 100%; background: var(--primary-color); border-radius: 10px; }
+        /* === 5. SKILLS & EXPERTISE === */
+        .skills { background-color: #fff; }
+        .skills-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+        .skill-badge {
+            background-color: var(--light-bg);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            color: var(--secondary-color);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.03);
+            transition: var(--transition);
+        }
+        .skill-badge:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        /* === 6. PORTFOLIO SHOWCASE (10 IMAGES GRID) === */
+        .portfolio { background-color: var(--light-bg); }
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .portfolio-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            position: relative;
+            background: #fff;
+        }
+        .portfolio-card img { width: 100%; height: 380px; object-fit: cover; display: block; transition: var(--transition); }
+        .portfolio-card:hover img { transform: scale(1.06); }
         
-        .company-logos-title { text-align: center; font-weight: 600; color: var(--text-muted); margin-bottom: 35px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; }
-        .logos-flex { display: flex; justify-content: center; align-items: center; gap: 60px; flex-wrap: wrap; opacity: 0.6; }
-        .brand-logo { font-size: 1.4rem; font-weight: 700; color: var(--text-color); display: flex; align-items: center; gap: 10px; }
-
-        /* CAREER PATH TIMELINE */
-        .exp-timeline { max-width: 850px; margin: 0 auto; position: relative; padding-left: 35px; border-left: 2px solid var(--border-color); }
-        .exp-card { background: var(--card-bg); padding: 30px; border-radius: 14px; border: 1px solid var(--border-color); margin-bottom: 30px; position: relative; box-shadow: var(--box-shadow); }
-        .exp-card::before { content: ''; position: absolute; top: 33px; left: -42px; width: 12px; height: 12px; background: var(--primary-color); border-radius: 50%; border: 3px solid var(--bg-color); }
-        .exp-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px; }
-        .exp-company { font-weight: 700; color: var(--primary-color); display: flex; align-items: center; gap: 8px; font-size: 1.1rem; }
-        .exp-card h4 { font-size: 1.2rem; font-weight: 600; margin-bottom: 8px; }
-        .exp-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
-
-        /* PROJECTS DISPLAY PORTAL */
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .project-card { background: var(--card-bg); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-color); box-shadow: var(--box-shadow); transition: var(--transition); }
-        .project-card:hover { transform: translateY(-8px); box-shadow: var(--card-shadow-hover); border-color: rgba(0, 118, 255, 0.15); }
-        .project-img { height: 220px; background-color: #f1f3f5; background-size: cover; background-position: center; }
-        .project-info { padding: 30px; }
-        .project-info h3 { margin-bottom: 12px; font-size: 1.3rem; font-weight: 600; }
-        .project-info p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
-        .project-link { color: var(--primary-color); font-weight: 600; display: inline-flex; align-items: center; gap: 6px; margin-top: 20px; font-size: 0.9rem; }
-
-        /* SOCIAL VERIFIED CLIENTS REVIEWS */
-        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .review-card { background: var(--card-bg); padding: 40px 35px; border-radius: 16px; border: 1px solid var(--border-color); box-shadow: var(--box-shadow); position: relative; }
-        .review-card i.quote { position: absolute; top: 30px; right: 35px; font-size: 2.5rem; color: rgba(0, 118, 255, 0.06); }
-        .stars { color: #ffbc00; margin-bottom: 20px; font-size: 0.85rem; }
-        .review-card p { font-size: 0.98rem; color: var(--text-muted); line-height: 1.65; font-style: italic; }
-        .review-user-info { margin-top: 25px; border-top: 1px solid var(--border-color); padding-top: 20px; }
-        .review-user-info h4 { font-size: 1rem; font-weight: 600; color: var(--text-color); }
-        .review-user-info p { font-size: 0.8rem; color: var(--text-muted); not-italic; margin-top: 2px; font-style: normal; }
-
-        /* SECURE CONTACT ARCHITECTURE & SYSTEM SCHEMES */
-        .contact-layout { display: grid; grid-template-columns: 1fr 1.3fr; gap: 60px; }
-        .info-pane h3 { font-size: 1.7rem; font-weight: 700; margin-bottom: 15px; }
-        .info-pane p { color: var(--text-muted); margin-bottom: 35px; line-height: 1.6; }
-        .detail-item { display: flex; align-items: center; gap: 18px; margin-bottom: 30px; }
-        .detail-item i { width: 44px; height: 44px; background: rgba(0, 118, 255, 0.05); color: var(--primary-color); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
-        .detail-item h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); }
-        .detail-item p { font-size: 1rem; font-weight: 600; color: var(--text-color); margin-bottom: 0; }
-        
-        .contact-form { display: flex; flex-direction: column; gap: 22px; }
-        .form-ctrl input, .form-ctrl select, .form-ctrl textarea {
-            width: 100%; padding: 16px 20px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 10px; outline: none; font-size: 0.95rem; color: var(--text-color); transition: var(--transition);
+        .portfolio-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(139, 38, 62, 0.92);
+            color: #fff;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            opacity: 0;
+            transition: var(--transition);
+            padding: 25px;
+            z-index: 2;
+            text-align: center;
         }
-        .form-ctrl input:focus, .form-ctrl select:focus, .form-ctrl textarea:focus { border-color: var(--primary-color); box-shadow: 0 0 0 4px rgba(0, 118, 255, 0.08); }
+        .portfolio-card:hover .portfolio-overlay { opacity: 1; }
+        .portfolio-overlay h3 { color: #fff; margin-bottom: 8px; font-size: 1.3rem; }
+        .portfolio-overlay p { color: #eee; font-size: 0.9rem; }
 
-        /* THE CONSOLE FOOTER */
-        footer { background: var(--bg-darker); padding: 50px 0; text-align: center; border-top: 1px solid var(--border-color); }
-        footer p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px; }
-        .foot-socials a { margin: 0 12px; color: var(--text-muted); font-size: 1.2rem; }
-        .foot-socials a:hover { color: var(--primary-color); }
-
-        /* SYSTEM RESPONSIVE MEDIA QUERIES */
-        @media (max-width: 991px) {
-            .about-wrapper, .contact-layout { grid-template-columns: 1fr; gap: 40px; }
-            .about-image-frame { max-width: 450px; margin: 0 auto; }
+        /* === 7. CLIENT TESTIMONIALS === */
+        .testimonials { background-color: #fff; text-align: center; }
+        .testimonial-slider { display: flex; gap: 30px; overflow-x: auto; padding: 20px 0; scrollbar-width: thin; }
+        .testimonial-item {
+            flex: 0 0 320px;
+            background-color: var(--light-bg);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
         }
-        @media (max-width: 768px) {
+        .testimonial-item p { font-style: italic; color: var(--text-dark); }
+        .testimonial-author { font-weight: 700; color: var(--secondary-color); margin-top: 15px; }
+
+        /* === 8. CONTACT & INQUIRY === */
+        .contact { background-color: var(--primary-color); color: #fff; }
+        .contact .section-header h2 { color: #fff; }
+        .contact .section-header h2::after { background-color: #fff; }
+        .contact-form { max-width: 700px; margin: 0 auto; text-align: center; }
+        .contact-form p { color: #f5f5f5; }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 18px;
+            margin-bottom: 25px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: var(--secondary-color);
+        }
+        .contact-form .btn-light {
+            background-color: #fff; color: var(--primary-color); border: 2px solid #fff;
+        }
+        .contact-form .btn-light:hover { background-color: transparent; color: #fff; }
+
+        /* === FOOTER === */
+        footer {
+            background-color: #111;
+            color: #ccc;
+            text-align: center;
+            padding: 50px 0;
+        }
+        .socials { margin-bottom: 20px; }
+        .socials a {
+            color: #fff;
+            font-size: 22px;
+            margin: 0 15px;
+            transition: var(--transition);
+        }
+        .socials a:hover { color: var(--primary-color); transform: scale(1.1); }
+
+        /* === ANIMATIONS === */
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* === RESPONSIVE CODES FOR ALL DEVICES === */
+        @media(max-width: 1024px) {
+            .section-padding { padding: 80px 5%; }
+            .hero-content h1 { font-size: 3.5rem; }
+            .about-container { flex-direction: column; text-align: center; }
+            .portfolio-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+        }
+
+        @media(max-width: 768px) {
+            .section-header h2 { font-size: 2.3rem; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content p { font-size: 1.1rem; }
+            
+            /* Enhanced Clean Mobile Navigation Menu */
             .nav-links {
-                position: absolute; top: 71px; right: 0; width: 100%; background: var(--card-bg);
-                flex-direction: column; align-items: center; padding: 35px 0; gap: 24px;
-                transform: translateY(-170%); border-bottom: 1px solid var(--border-color); box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+                position: fixed;
+                top: var(--header-height);
+                left: 0;
+                background-color: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(15px);
+                width: 100%;
+                height: calc(100vh - var(--header-height));
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 40px;
+                box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+                transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease;
+                transform: translateY(-150%);
+                opacity: 0;
+                pointer-events: none;
             }
-            .nav-links.active { transform: translateY(0); }
+            
+            .nav-links.active { 
+                transform: translateY(0); 
+                opacity: 1; 
+                pointer-events: auto;
+            }
+            
+            .nav-links li { margin: 15px 0; width: 100%; text-align: center; }
+            .nav-links a { font-size: 16px; display: block; width: 100%; padding: 12px 0; }
+            
             .menu-toggle { display: block; }
-            .hero-content h1 { font-size: 2.6rem; letter-spacing: -1px; }
-            .skills-grid { grid-template-columns: 1fr; gap: 25px; }
-            .logos-flex { gap: 35px; }
+        }
+
+        @media(max-width: 480px) {
+            .hero-content h1 { font-size: 2rem; }
+            .section-header h2 { font-size: 1.8rem; }
+            .logo { font-size: 20px; }
+            .btn { padding: 10px 25px; font-size: 12px; }
+            .portfolio-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
-<body class="no-scroll">
- 
-    <div id="entry-screen">
-        <div class="entry-container">
-            <div class="avatar-orbit-box">
-                <div class="dotted-circle">
-                    <div class="orbit-icon o-1"><i class="fab fa-js-square" title="JavaScript Coding"></i></div>
-                    <div class="orbit-icon o-2"><i class="fab fa-wordpress" title="WordPress Engine"></i></div>
-                    <div class="orbit-icon o-3"><i class="fab fa-elementor" title="Elementor Professional"></i></div>
-                    <div class="orbit-icon o-4"><i class="fab fa-shopify" title="Shopify Architecture"></i></div>
-                    <div class="orbit-icon o-5"><span>AV</span></div>
-                    <div class="orbit-icon o-6"><span>DV</span></div>
-                </div>
-                <div class="center-avatar">
-                    <img src="https://homedecorcozy.com/wp-content/uploads/2026/03/saad-durrani.png" alt="Saad Durrani Identity Photo">
-                </div>
-            </div>
+<body>
 
-            <h1>Saad Durrani</h1>
-            <h4>Full-Stack Developer</h4>
-            <p>Full-Stack Developer | WordPress & Shopify Expert | SEO Strategist | Lead Generation Specialist | Founder @ HomeDecorCozy.</p>
-            
-            <div class="entry-socials">
-                <a href="https://pk.linkedin.com/in/saad-durrani-developer" target="_blank" class="ln"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://wa.me/923083861749" target="_blank" class="wa"><i class="fab fa-whatsapp"></i></a>
-                <a href="https://www.facebook.com/saaddurranideveloper/" target="_blank" class="fb"><i class="fab fa-facebook-f"></i></a>
-            </div>
-
-            <button class="btn btn-primary" onclick="enterPortfolio()">View Portfolio <i class="fas fa-arrow-right" style="margin-left: 8px; font-size: 0.85rem;"></i></button>
-        </div>
-    </div>
-
-
-    <div id="main-portfolio">
+    <!-- === 1. HEADER === -->
+    <header>
+        <div class="logo">Alexa Hugeh</div>
         
-        <nav class="navbar">
-            <div class="container">
-                <div class="logo-box">
-                     <i class="fas fa-cubes"></i> SAAD<span>DURRANI</span>
-                </div>
-                <div class="menu-toggle" id="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="#home" class="active">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#portfolio">Work</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fa fa-bars"></i>
+        </div>
+        
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#mission">Philosophy</a></li>
+            <li><a href="#skills">Expertise</a></li>
+            <li><a href="#portfolio">Showcase</a></li>
+            <li><a href="#testimonials">Clients</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </header>
+
+    <!-- === 2. HERO SECTION === -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Ethical Knitwear</h1>
+            <p>Elevating Sustainable Fashion | Thoughtful Designs</p>
+            <a href="#portfolio" class="btn">Explore Creations</a>
+        </div>
+    </section>
+
+    <!-- === 3. ABOUT OWNER === -->
+    <section id="about" class="about section-padding">
+        <div class="about-container">
+            <div class="about-image reveal fade-left">
+                <img src="https://scontent.flhe3-2.fna.fbcdn.net/v/t39.30808-6/725924498_122112842019345771_5257024326434545593_n.jpg?stp=dst-jpg_tt6&cstp=mx577x1024&ctp=s577x1024&_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeHFGCeZV7TMGGM_dE10EzDCMeikkiO0eMAx6KSSI7R4wMVzrEjbI3JVVzkAYjoxMecu8jSudq8FOePpOSzveIdP&_nc_ohc=Zd0qkaJ2KEkQ7kNvwGNRwdv&_nc_oc=Adr5ztkDIygBmrkfFs3BpFvlNiYPfSSUZFpFeL7R_MninS1u5uEV1DDV-iYFcvM_PQY&_nc_zt=23&_nc_ht=scontent.flhe3-2.fna&_nc_gid=QC0PbxuTYI13JzufLyLVmA&_nc_ss=7b2a8&oh=00_Af_Ks4kisCF2lRkUFFMl-1rMIXzz_DDYJqrDCnMJU5oZQw&oe=6A39639D" alt="Alexa Hugeh" />
             </div>
-        </nav>
-
-        <section id="home" class="hero">
-            <div class="container hero-content">
-                <h1>Transforming Concepts Into <br><span>Digital Realities</span></h1>
-                <p>Full-stack digital architecture engineered with performance-first methodologies, structural scalability, and elegant layout layouts.</p>
-                <a href="#contact" class="btn btn-primary">Initiate Project</a>
-            </div>
-        </section>
-
-        <section id="about" class="section">
-            <div class="container">
-                <h2 class="section-title">About Me</h2>
-                <div class="about-wrapper">
-                    <div class="about-image-frame">
-                        <img src="https://homedecorcozy.com/wp-content/uploads/2026/03/saad-durrani.png" alt="Saad Durrani Live Snapshot">
-                    </div>
-                    <div class="about-text">
-                        <h3>Specialized Engineering & Web Integration</h3>
-                        <p>With comprehensive domain expertise extending across semantic code structures, open-source content control management systems, and specialized standalone configurations, I engineer front-end deployments that maintain extreme fidelity on high-density viewports.</p>
-                        <p>Every implementation prioritizes asset optimization, clean layout delivery, and lightning-fast rendering profiles to give your visitors an unparalleled interactive experience.</p>
-                        <a href="#contact" class="btn btn-secondary">Get In Touch</a>
-                    </div>
+            <div class="about-text reveal fade-right">
+                <div class="section-header" style="text-align: left; margin-bottom: 20px;">
+                    <h2>Meet the Creator</h2>
                 </div>
+                <h3>Alexa Hugeh</h3>
+                <p>Fashion isn’t just about clothing; it’s about making a difference. As a conscious designer, my vision merges high-end aesthetic with a deep commitment to environmental responsibility. I create timeless, ethical knitwear and custom garments designed to make a statement—comfortably, stylistically, and responsibly.</p>
+                <a href="#contact" class="btn">Custom Inquiries</a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="services" class="section bg-darker">
-            <div class="container">
-                <h2 class="section-title">Services Offered</h2>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-icon"><i class="fas fa-code"></i></div>
-                        <h3>Custom Development</h3>
-                        <p>Clean HTML5, CSS3, and JavaScript integration tailored precisely to mimic high-end responsive prototypes.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon"><i class="fab fa-wordpress"></i></div>
-                        <h3>WordPress Ecosystems</h3>
-                        <p>Complete custom design-to-theme development using robust page builders like Elementor, Divi, and Avada.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon"><i class="fas fa-shopping-bag"></i></div>
-                        <h3>E-Commerce Engineering</h3>
-                        <p>High-converting, scalable online shop setups built on top of Shopify and WooCommerce configurations.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon"><i class="fas fa-search-dollar"></i></div>
-                        <h3>SEO & Page Optimization</h3>
-                        <p>Technical search engine enhancements, schema layouts tuning, and core web vitals optimization.</p>
-                    </div>
-                </div>
+    <!-- === 4. MISSION & DESIGN PHILOSOPHY === -->
+    <section id="mission" class="mission section-padding">
+        <div class="section-header reveal fade-bottom">
+            <h2>Our Foundation</h2>
+        </div>
+        <div class="mission-grid">
+            <div class="mission-item reveal fade-bottom">
+                <i class="fa fa-leaf"></i>
+                <h3>Sustainability First</h3>
+                <p>Every thread counts. We source only GOTS-certified organic cotton, ethical wools, and eco-friendly dyes, reducing our fashion footprint one garment at a time.</p>
             </div>
-        </section>
+            <div class="mission-item reveal fade-bottom">
+                <i class="fa fa-palette"></i>
+                <h3>Timeless Aesthetic</h3>
+                <p>We avoid fast-fashion trends. Our designs are modern, minimalistic, and durable, created to be loved and worn for years to come.</p>
+            </div>
+            <div class="mission-item reveal fade-bottom">
+                <i class="fa fa-fist-raised"></i>
+                <h3>Fair Practices</h3>
+                <p>Craftsmanship matters. We are dedicated to ensuring fair wages, safe working conditions, and transparent manufacturing throughout our supply chain.</p>
+            </div>
+        </div>
+    </section>
 
-        <section id="skills" class="section">
-            <div class="container">
-                <h2 class="section-title">Technical Expertise</h2>
-                <div class="skills-grid">
-                    <div class="skill-bar-item">
-                        <div class="skill-bar-info"><span>Core Frontend Programming (HTML5, CSS3, JS)</span><span>95%</span></div>
-                        <div class="bar-bg"><div class="bar-fill" style="width: 95%"></div></div>
-                    </div>
-                    <div class="skill-bar-item">
-                        <div class="skill-bar-info"><span>WordPress Lifecycle Architecture</span><span>90%</span></div>
-                        <div class="bar-bg"><div class="bar-fill" style="width: 90%"></div></div>
-                    </div>
-                    <div class="skill-bar-item">
-                        <div class="skill-bar-info"><span>E-Commerce Integration (Shopify/WooCommerce)</span><span>85%</span></div>
-                        <div class="bar-bg"><div class="bar-fill" style="width: 85%"></div></div>
-                    </div>
-                    <div class="skill-bar-item">
-                        <div class="skill-bar-info"><span>Visual Builders (Elementor, Divi, Avada)</span><span>92%</span></div>
-                        <div class="bar-bg"><div class="bar-fill" style="width: 92%"></div></div>
-                    </div>
-                </div>
+    <!-- === 5. SKILLS & EXPERTISE === -->
+    <section id="skills" class="skills section-padding">
+        <div class="section-header reveal fade-bottom">
+            <h2>Expertise</h2>
+        </div>
+        <div class="skills-container reveal fade-bottom">
+            <span class="skill-badge">Sustainable Knitwear</span>
+            <span class="skill-badge">Textile Design</span>
+            <span class="skill-badge">Technical Draping</span>
+            <span class="skill-badge">Garment Patterning</span>
+            <span class="skill-badge">Sustainable Sourcing</span>
+            <span class="skill-badge">Ethical Brand Strategy</span>
+            <span class="skill-badge">Custom Tailoring</span>
+        </div>
+    </section>
 
-                <div class="company-logos-title">Supported Core Ecosystems Patches</div>
-                <div class="logos-flex">
-                    <div class="brand-logo"><i class="fab fa-wordpress-simple"></i> WordPress</div>
-                    <div class="brand-logo"><i class="fab fa-shopify"></i> Shopify</div>
-                    <div class="brand-logo"><i class="fab fa-elementor"></i> Elementor</div>
-                    <div class="brand-logo"><i class="fab fa-js-square"></i> JavaScript</div>
+    <!-- === 6. PORTFOLIO SHOWCASE (10 PREMIUM IMAGES) === -->
+    <section id="portfolio" class="portfolio section-padding">
+        <div class="section-header reveal fade-bottom">
+            <h2>Creations Gallery</h2>
+        </div>
+        <div class="portfolio-grid">
+            <!-- Item 1 -->
+            <div class="portfolio-card reveal fade-bottom">
+                <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=600" alt="Organic Wool Sweater" />
+                <div class="portfolio-overlay">
+                    <h3>Organic Wool Sweater</h3>
+                    <p>Technically Draped | Naturally Dyed</p>
                 </div>
             </div>
-        </section>
-
-        <section id="experience" class="section bg-darker">
-            <div class="container">
-                <h2 class="section-title">Professional Path</h2>
-                <div class="exp-timeline">
-                    <div class="exp-card">
-                        <div class="exp-header">
-                            <div class="exp-company"><i class="fas fa-building"></i> Yoan Systems</div>
-                            <span>2024 - Present</span>
-                        </div>
-                        <h4>Senior Web Developer</h4>
-                        <p style="margin-top: 10px;">Overseeing premium structural logic deployment, optimizing technical search algorithms (SEO structures), and handling full-scale design-to-code components conversion.</p>
-                    </div>
-                    <div class="exp-card">
-                        <div class="exp-header">
-                            <div class="exp-company"><i class="fas fa-store"></i> Home Decor Cozy</div>
-                            <span>2026 - Present</span>
-                        </div>
-                        <h4>Founder & Digital Architect</h4>
-                        <p style="margin-top: 10px;">Formulating identity platforms and optimizing user journeys (UI/UX parameters) to drive conversion architectures for target e-commerce sectors.</p>
-                    </div>
+            <!-- Item 2 -->
+            <div class="portfolio-card reveal fade-bottom">
+                <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=600" alt="Winter Jacket" />
+                <div class="portfolio-overlay">
+                    <h3>Minimalist Winter Jacket</h3>
+                    <p>Eco-friendly Insulation | Premium Finish</p>
                 </div>
             </div>
-        </section>
-
-        <section id="portfolio" class="section">
-            <div class="container">
-                <h2 class="section-title">Recent Systems</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
-                        <div class="project-info">
-                            <h3>Dental Portal Platform</h3>
-                            <p>Optimized dental platform engineered for explicit lead generation targets within global dental care niches.</p>
-                            <a href="#" class="project-link">Explore Case Study <i class="fas fa-chevron-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <div class="project-img" style="background-image: url('https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
-                        <div class="project-info">
-                            <h3>Dynamic Trading Matrix</h3>
-                            <p>High fidelity dynamic analytical tracking board with real-time tracking layout components.</p>
-                            <a href="#" class="project-link">Explore Case Study <i class="fas fa-chevron-right"></i></a>
-                        </div>
-                    </div>
+            <!-- Item 3 -->
+            <div class="portfolio-card reveal fade-bottom">
+                <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=600" alt="Luxury Lounge Set" />
+                <div class="portfolio-overlay">
+                    <h3>Luxury Lounge Set</h3>
+                    <p>100% Pure Organic Cotton</p>
                 </div>
             </div>
-        </section>
-
-        <section id="reviews" class="section bg-darker">
-            <div class="container">
-                <h2 class="section-title">Client Feedback</h2>
-                <div class="reviews-grid">
-                    <div class="review-card">
-                        <i class="fas fa-quote-right quote"></i>
-                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <p>"Saad handled our technical migration seamlessly. Site speeds improved exponentially, resulting in immediate organic traffic boosts."</p>
-                        <div class="review-user-info">
-                            <h4>Medical Systems UK</h4>
-                            <p>Executive Manager</p>
-                        </div>
-                    </div>
-                    <div class="review-card">
-                        <i class="fas fa-quote-right quote"></i>
-                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <p>"Flawless theme customization. He integrated complex custom code blocks without disrupting core functionalities."</p>
-                        <div class="review-user-info">
-                            <h4>E-Commerce Ventures</h4>
-                            <p>Operations Lead</p>
-                        </div>
-                    </div>
+            <!-- Item 4 -->
+            <div class="portfolio-card reveal fade-bottom">
+                <img src="https://images.unsplash.com/photo-1578587018452-892bacefd3f2?q=80&w=600" alt="Knitwear Texture Close-up" />
+                <div class="portfolio-overlay">
+                    <h3>Premium Knit Texture</h3>
+                    <p>Hand-woven Detail Work</p>
                 </div>
             </div>
-        </section>
-
-        <section id="contact" class="section">
-            <div class="container">
-                <h2 class="section-title">Connect</h2>
-                <div class="contact-layout">
-                    <div class="info-pane">
-                        <h3>Let's build something exceptional</h3>
-                        <p>Available for premium enterprise collaborations, custom platform development, and design optimization projects.</p>
-                        
-                        <div class="detail-item">
-                            <i class="fas fa-envelope"></i>
-                            <div><h4>Email</h4><p>saaddurranideveloper@gmail.com</p></div>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-phone"></i>
-                            <div><h4>Phone</h4><p>+92 308 3861749</p></div>
-                        </div>
-                        <div class="detail-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div><h4>Location</h4><p>Bahawalpur, Punjab, Pakistan</p></div>
-                        </div>
-                    </div>
-                    
-                    <form class="contact-form" onsubmit="event.preventDefault(); alert('Message logged successfully.');">
-                        <div class="form-ctrl"><input type="text" placeholder="Your Name" required></div>
-                        <div class="form-ctrl"><input type="email" placeholder="Your Email" required></div>
-                        <div class="form-ctrl">
-                            <select>
-                                <option value="" disabled selected>Project Scope</option>
-                                <option value="custom">Custom Web Development</option>
-                                <option value="wp">WordPress Solutions</option>
-                                <option value="seo">SEO Optimization</option>
-                            </select>
-                        </div>
-                        <div class="form-ctrl"><textarea rows="5" placeholder="Your Specifications" required></textarea></div>
-                        <button type="submit" class="btn btn-primary">Transmit Request</button>
-                    </form>
+            <!-- Item 5 -->
+            <div class="portfolio-card reveal fade-bottom">
+                <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?q=80&w=600" alt="Conscious Apparel Studio" />
+                <div class="portfolio-overlay">
+                    <h3>Studio Showcase Piece</h3>
+                    <p>Ethical Sourcing & Construction</p>
                 </div>
             </div>
-        </section>
-
-        <footer>
-            <div class="container">
-                <p>&copy; 2026 Saad Durrani. All rights reserved.</p>
-                <div class="foot-socials">
-                    <a href="https://pk.linkedin.com/in/saad-durrani-developer" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://wa.me/923083861749" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                    <a href="https://www.facebook.com/saaddurranideveloper/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <!-- Item 6 -->
+            <div class="portfolio-card reveal fade-bottom">
+                <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=600" alt="Earth-Tone Garments" />
+                <div class="portfolio-overlay">
+                    <h3>Earth-Tone Collection</h3>
+                    <p>Organic Fall Apparel Line</p>
                 </div>
             </div>
-        </footer>
+            <!-- Item 7 -->
+            <div class="portfolio-card reveal fade-bottom">
+                <img src="https://images.unsplash.com/photo-1584273143981-41c073dfe8f8?q=80&w=600" alt="Sustainable Scarf Look" />
+                <div class="portfolio-overlay">
+                    <h3>Artisan Crafted Scarf</h3>
+                    <p>Biodegradable Textiles</p>
+                </div>
+            </div>
+            <!-- Item 8 -->
+            <div class="portfolio-card reveal fade-bottom">
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=600" alt="Minimalist Fashion Apparel" />
+                <div class="portfolio-overlay">
+                    <h3>Capsule Wardrobe Essential</h3>
+                    <p>Timeless Outerwear Design</p>
+                </div>
+            </div>
+            <!-- Item 9 -->
+            <div class="portfolio-card reveal fade-bottom">
+                <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?q=80&w=600" alt="Beige Aesthetic Apparel" />
+                <div class="portfolio-overlay">
+                    <h3>Beige Aesthetic Cardigan</h3>
+                    <p>Crafted for Everyday Luxury</p>
+                </div>
+            </div>
+            <!-- Item 10 -->
+            <div class="portfolio-card reveal fade-bottom">
+                <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=600" alt="Modern Sustainable Attire" />
+                <div class="portfolio-overlay">
+                    <h3>Avant-Garde Ethical Tailoring</h3>
+                    <p>High-End Eco Runway Design</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    </div>
+    <!-- === 7. CLIENT TESTIMONIALS === -->
+    <section id="testimonials" class="testimonials section-padding">
+        <div class="section-header reveal fade-bottom">
+            <h2>Words From Clients</h2>
+        </div>
+        <div class="testimonial-slider reveal fade-bottom">
+            <div class="testimonial-item">
+                <p>"The quality of Alexa's knitwear is truly phenomenal. It’s soft, beautiful, and knowing it's sustainable makes it my favorite garment."</p>
+                <div class="testimonial-author">Sarah L.</div>
+            </div>
+            <div class="testimonial-item">
+                <p>"Working with Alexa on my custom tailoring was effortless. She captured exactly the modern, clean aesthetic I wanted."</p>
+                <div class="testimonial-author">Michael T.</div>
+            </div>
+            <div class="testimonial-item">
+                <p>"I love that Alexa Hugeh creates fashion with a conscience. My sustainable scarf has lasted me through three seasons and still looks new!"</p>
+                <div class="testimonial-author">Isabella G.</div>
+            </div>
+        </div>
+    </section>
 
+    <!-- === 8. CONTACT & INQUIRY === -->
+    <section id="contact" class="contact section-padding">
+        <div class="section-header reveal fade-bottom">
+            <h2>Inquiry</h2>
+        </div>
+        <div class="contact-form reveal fade-bottom">
+            <p>Ready to start a conversation? Contact me for custom designs, collaboration, or sustainable sourcing inquiries.</p>
+            <form id="portfolio-form">
+                <input type="text" placeholder="Name / Brand" required />
+                <input type="email" placeholder="Email Address" required />
+                <textarea rows="6" placeholder="Your Dream Outfit or Project Description..." required></textarea>
+                <button type="submit" class="btn btn-light">Submit Inquiry</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- === FOOTER === -->
+    <footer>
+        <div class="socials">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div>
+        <p>&copy; 2026 Alexa Hugeh Designs. All Rights Reserved.</p>
+        <p style="font-size: 11px;">Sustainable | Ethical | Timeless</p>
+    </footer>
+
+    <!-- JavaScript Toggle & Scroll Animations -->
     <script>
-        // TRIGGER ENTRY TRANSITION LAYER
-        function enterPortfolio() {
-            const entryScreen = document.getElementById('entry-screen');
-            const mainPortfolio = document.getElementById('main-portfolio');
+        document.addEventListener("DOMContentLoaded", function() {
+            var menuToggle = document.getElementById('mobile-menu');
+            var navLinks = document.querySelector('.nav-links');
+            var icon = menuToggle.querySelector('i');
             
-            entryScreen.classList.add('fade-out');
-            document.body.classList.remove('no-scroll');
-            mainPortfolio.classList.add('show');
-        }
+            // Toggle Logic Fix
+            menuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                navLinks.classList.toggle('active');
+                
+                if(navLinks.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
 
-        // Mobile Nav Bar Menu Toggle
-        const menuToggle = document.getElementById('mobile-menu');
-        const navLinks = document.querySelector('.nav-links');
+            // Close menu on link click automatically
+            var links = document.querySelectorAll('.nav-links a');
+            links.forEach(function(link) {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('active');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
 
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            const icon = menuToggle.querySelector('i');
-            if (navLinks.classList.contains('active')) {
-                icon.className = 'fas fa-times';
-            } else {
-                icon.className = 'fas fa-bars';
+            // Close on outside background click
+            document.addEventListener('click', function(e) {
+                if(!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+                    navLinks.classList.remove('active');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+            // Scroll Reveal Logic
+            function revealOnScroll() {
+                var reveals = document.querySelectorAll(".reveal");
+                for (var i = 0; i < reveals.length; i++) {
+                    var windowHeight = window.innerHeight;
+                    var elementTop = reveals[i].getBoundingClientRect().top;
+                    var elementVisible = 100;
+
+                    if (elementTop < windowHeight - elementVisible) {
+                        reveals[i].classList.add("active");
+                    }
+                }
             }
-        });
-
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                menuToggle.querySelector('i').className = 'fas fa-bars';
-            });
-        });
-
-        // Dynamic Highlighting on Window Scroll Event Handler
-        const sections = document.querySelectorAll('section');
-        const navLi = document.querySelectorAll('.nav-links li a');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (window.pageYOffset >= (sectionTop - sectionHeight / 3)) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLi.forEach(a => {
-                a.classList.remove('active');
-                if (a.getAttribute('href').includes(current)) {
-                    a.classList.add('active');
-                }
-            });
+            window.addEventListener("scroll", revealOnScroll);
+            revealOnScroll();
         });
     </script>
 </body>
