@@ -3,9 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Saad Durrani — Web Development &amp; WordPress Builds</title>
-<link rel="icon" href="https://nexthomedecors.com/wp-content/uploads/2026/10/Logo.png">
-<meta name="description" content="Saad Durrani builds fast, responsive websites — custom HTML/CSS/JS and WordPress builds with Elementor, Divi &amp; Avada.">
+<title>Saad Durrani — Software Engineer &amp; Web Developer | WordPress Specialist</title>
+<link rel="icon" type="image/png" sizes="32x32" href="https://nexthomedecors.com/wp-content/uploads/2026/10/Logo.png">
+<link rel="icon" type="image/png" sizes="192x192" href="https://nexthomedecors.com/wp-content/uploads/2026/10/Logo.png">
+<link rel="shortcut icon" href="https://nexthomedecors.com/wp-content/uploads/2026/10/Logo.png">
+<link rel="apple-touch-icon" href="https://nexthomedecors.com/wp-content/uploads/2026/10/Logo.png">
+<meta name="description" content="Saad Durrani is a software engineer and web developer — WordPress specialist (Divi, Elementor, Avada), Python and custom web applications.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -81,7 +84,7 @@
   .eyebrow::before{content:""; width:26px; height:1px; background:var(--amber);}
 
   /* ---------- progress bar ---------- */
-  #scrollProgress{position:fixed; top:0; left:0; height:3px; background:var(--amber); width:0%; z-index:200; transition:width .1s linear;}
+  #scrollProgress{position:absolute; bottom:-1px; left:0; height:3px; background:var(--amber); width:0%; z-index:2; transition:width .1s linear;}
 
   /* ---------- NAV ---------- */
   header.site-nav{
@@ -89,17 +92,16 @@
     background:rgba(246,242,233,0.96);
     backdrop-filter:blur(6px);
     border-bottom:1px solid rgba(143,181,176,0.25);
-    transition:transform .3s var(--ease);
   }
-  header.site-nav.nav-hidden{transform:translateY(-100%);}
   .nav-inner{
     max-width:var(--max); margin:0 auto; padding:0 28px;
     height:88px; display:flex; align-items:center; justify-content:space-between;
   }
   .logo{
-    display:flex; align-items:center; gap:10px;
-    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:18px; color:var(--blueprint-deep);
+    display:flex; align-items:center; gap:2px; line-height:1;
+    font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:19px; color:var(--blueprint-deep);
   }
+  .logo-text{display:block; line-height:1; white-space:nowrap; margin-left:-4px; padding-top:2px;}
   .logo-mark{
     width:32px; height:32px; border:1.5px solid var(--amber); border-radius:3px;
     display:flex; align-items:center; justify-content:center;
@@ -107,7 +109,7 @@
     position:relative;
   }
   .logo-mark::after{content:""; position:absolute; inset:5px; border:1px solid rgba(208,138,30,0.4);}
-  .logo-img{height:72px; width:auto; display:block; object-fit:contain;}
+  .logo-img{height:72px; width:auto; display:block; object-fit:contain; flex-shrink:0;}
   @media (max-width:560px){ .logo-img{height:60px;} }
   nav.links{display:flex; align-items:center; gap:30px;}
   nav.links a{
@@ -357,7 +359,7 @@
     font-family:'IBM Plex Mono', monospace; font-size:11px; padding:5px 10px; letter-spacing:.05em;
   }
   .about-text h3{font-size:26px; margin-bottom:6px;}
-  .about-role{font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--amber-ink); margin-bottom:20px; display:block;}
+  .about-role{font-family:'IBM Plex Mono', monospace; font-size:13px; line-height:1.6; color:var(--amber-ink); margin-bottom:20px; display:block; max-width:62ch;}
   .about-text p{color:var(--ink-soft); font-size:15.5px; max-width:62ch; margin-bottom:18px;}
   @media (max-width:760px){ .about-grid{grid-template-columns:1fr;} .about-photo-wrap{max-width:200px;} }
 
@@ -441,6 +443,29 @@
   .footer-links a.txt{font-size:13px; opacity:.85;}
   .footer-links a.txt:hover{opacity:1; color:var(--amber);}
 
+
+  /* ---------- IMAGE LIGHTBOX ---------- */
+  .zoomable{cursor:zoom-in;}
+  .lightbox{
+    position:fixed; inset:0; z-index:500; background:rgba(14,24,23,0.94);
+    display:flex; align-items:center; justify-content:center; padding:24px;
+    opacity:0; pointer-events:none; transition:opacity .25s ease;
+  }
+  .lightbox.open{opacity:1; pointer-events:auto;}
+  .lightbox img{
+    max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain;
+    border:1px solid rgba(143,181,176,0.35); background:var(--white); padding:8px; border-radius:2px;
+    transform:scale(.94); transition:transform .3s var(--ease); cursor:default;
+  }
+  .lightbox.open img{transform:scale(1);}
+  .lightbox-close{
+    position:absolute; top:20px; right:20px; width:46px; height:46px; border-radius:50%;
+    background:var(--amber); color:var(--ink); border:none; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:background .15s ease, transform .15s ease;
+  }
+  .lightbox-close:hover{background:var(--amber-soft); transform:scale(1.08);}
+  .lightbox-close svg{width:20px; height:20px;}
+
   /* ---------- back to top ---------- */
   #backToTop{
     position:fixed; bottom:26px; right:26px; width:44px; height:44px; border-radius:50%;
@@ -464,11 +489,10 @@
   <symbol id="i-in" viewBox="0 0 24 24"><path fill="#fff" d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2h.05c.53-1 1.83-2.2 3.77-2.2C19.9 8 22 10.2 22 14.2V24h-4v-8.6c0-2-.7-3.4-2.5-3.4-1.36 0-2.17.9-2.53 1.8-.13.3-.16.75-.16 1.2V24H8.5V8z"/></symbol>
 </svg>
 
-<div id="scrollProgress"></div>
-
 <header class="site-nav" id="siteNav">
+  <div id="scrollProgress"></div>
   <div class="nav-inner">
-    <a href="#top" class="logo"><img class="logo-img" src="https://nexthomedecors.com/wp-content/uploads/2026/10/Logo.png" alt="Saad Durrani logo"> Saad Durrani</a>
+    <a href="#top" class="logo"><img class="logo-img" src="https://nexthomedecors.com/wp-content/uploads/2026/10/Logo.png" alt="Saad Durrani logo"><span class="logo-text">Saad Durrani</span></a>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
     <nav class="links" id="navLinks">
       <a href="#services">Services</a>
@@ -734,49 +758,57 @@
         <p>A few words from people I've built sites for.</p>
       </div>
       <div class="review-grid reveal-stagger reveal">
+        <div class="review-card">
+          <div class="stars"><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg></div>
+          <p class="quote">"The site loads quickly and the airdrop listings are easy to scan. Saad understood exactly what we needed and delivered it cleanly."</p>
+          <div class="review-who">
+            <span class="review-avatar">CA</span>
+            <div><strong>The Crypto Airdrop</strong><span>Crypto content site</span></div>
+          </div>
+        </div>
 
         <div class="review-card">
-          <div class="stars">
-            <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
-          </div>
-          <p class="quote">"Saad rebuilt our store's product pages and they finally work properly on phones. Sales from mobile visitors picked up almost right away."</p>
+          <div class="stars"><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg></div>
+          <p class="quote">"Our posts now look great on phones and the layout is simple to browse. Saad was patient with every small change we asked for."</p>
           <div class="review-who">
             <span class="review-avatar">HD</span>
-            <div><strong>Home Decor Client</strong><span> Blogger WebSite</span></div>
+            <div><strong>Home Decor Cozy</strong><span>WordPress blog</span></div>
           </div>
         </div>
 
         <div class="review-card">
-          <div class="stars">
-            <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
-          </div>
-          <p class="quote">"Clear communication from start to finish. He explained what each page needed and delivered the site on the timeline he quoted."</p>
-          <div class="review-who">
-            <span class="review-avatar">FA</span>
-            <div><strong>Portfolio Client</strong><span>Personal brand site</span></div>
-          </div>
-        </div>
-
-        <div class="review-card">
-          <div class="stars">
-            <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
-            <svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg>
-          </div>
-          <p class="quote">"We needed a WordPress site we could edit ourselves after launch. Saad set it up in Elementor and walked us through it — exactly what we needed."</p>
+          <div class="stars"><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg></div>
+          <p class="quote">"We wanted a clean blog we could manage ourselves. Saad set it up and showed us how to edit it, which made everything easy."</p>
           <div class="review-who">
             <span class="review-avatar">HC</span>
-            <div><strong>Home Charm Decors</strong><span>Retail business</span></div>
+            <div><strong>Home Charm Decors</strong><span>WordPress blog</span></div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="stars"><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg></div>
+          <p class="quote">"Clear communication from start to finish. He explained what each page needed and delivered on the timeline he quoted."</p>
+          <div class="review-who">
+            <span class="review-avatar">FA</span>
+            <div><strong>Farzana Aqib</strong><span>Personal brand site</span></div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="stars"><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg></div>
+          <p class="quote">"The portfolio shows our work properly on every screen. The design is sharp and the whole process was smooth."</p>
+          <div class="review-who">
+            <span class="review-avatar">SD</span>
+            <div><strong>SkyLine Design</strong><span>Portfolio website</span></div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="stars"><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg><svg viewBox="0 0 20 20"><path d="M10 1l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L10 14.9 4.4 18l1.4-6.2L1 7.5l6.4-.6z"/></svg></div>
+          <p class="quote">"The store is easy to browse and checkout works well on mobile. Saad handled the setup professionally and fixed issues quickly."</p>
+          <div class="review-who">
+            <span class="review-avatar">RF</span>
+            <div><strong>Reliable Finds Store</strong><span>E-commerce store</span></div>
           </div>
         </div>
 
@@ -838,21 +870,21 @@
     <div class="wrap">
       <div class="about-grid">
         <div class="about-photo-wrap reveal">
-          <img class="about-photo" id="founderPhoto" src="https://nexthomedecors.com/wp-content/uploads/2026/10/saad-durrani.jpeg" alt="Saad Durrani, founder and designer" loading="lazy">
-          <span class="about-photo-tag">FOUNDER</span>
+          <img class="about-photo zoomable" id="founderPhoto" src="https://nexthomedecors.com/wp-content/uploads/2026/10/saad-durrani.jpeg" alt="Saad Durrani, founder and designer" loading="lazy">
+          <span class="about-photo-tag">Developer</span>
         </div>
         <div class="about-text reveal">
           <p class="eyebrow">About</p>
           <h3>Saad Durrani</h3>
-          <span class="about-role"> Web Developer</span>
-          <p>I'm a web developer based in Pakistan, building websites for small businesses and individuals — from custom HTML/CSS/JS sites to full WordPress builds with Elementor, Divi, and Avada.</p>
+          <span class="about-role">Software Engineer &amp;  Developer | WordPress Specialist (Divi, Elementor, Avada) | Python &amp; Custom Web Applications</span>
+          <p>I'm a  developer based in Pakistan, building websites for small businesses and individuals — from custom HTML/CSS/JS sites to full WordPress builds with Elementor, Divi, and Avada.</p>
           <p>Every project starts the same way: understand what the site actually needs to do, then build it so it works properly on any device — phone, tablet, or desktop — not just a designer's monitor.</p>
           <div class="socials">
+  <a class="soc soc-in" href="https://pk.linkedin.com/in/saad-durrani-developer" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24"><use href="#i-in"/></svg></a>
   <a class="soc soc-fb" href="https://www.facebook.com/saad.durani.developer" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24"><use href="#i-fb"/></svg></a>
-  <a class="soc soc-tt" href="https://www.tiktok.com/@saaddurranideveloper" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok"><svg viewBox="0 0 24 24"><use href="#i-tt"/></svg></a>
   <a class="soc soc-ig" href="https://www.instagram.com/saad.durrani.developer" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24"><use href="#i-ig"/></svg></a>
   <a class="soc soc-x" href="https://x.com/Saad_Developer_" target="_blank" rel="noopener" aria-label="X (Twitter)" title="X (Twitter)"><svg viewBox="0 0 24 24"><use href="#i-x"/></svg></a>
-  <a class="soc soc-in" href="https://pk.linkedin.com/in/saad-durrani-developer" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24"><use href="#i-in"/></svg></a>
+  <a class="soc soc-tt" href="https://www.tiktok.com/@saaddurranideveloper" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok"><svg viewBox="0 0 24 24"><use href="#i-tt"/></svg></a>
 </div>
         </div>
       </div>
@@ -884,11 +916,11 @@
           </div>
 
           <div class="socials">
+  <a class="soc soc-in" href="https://pk.linkedin.com/in/saad-durrani-developer" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24"><use href="#i-in"/></svg></a>
   <a class="soc soc-fb" href="https://www.facebook.com/saad.durani.developer" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24"><use href="#i-fb"/></svg></a>
-  <a class="soc soc-tt" href="https://www.tiktok.com/@saaddurranideveloper" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok"><svg viewBox="0 0 24 24"><use href="#i-tt"/></svg></a>
   <a class="soc soc-ig" href="https://www.instagram.com/saad.durrani.developer" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24"><use href="#i-ig"/></svg></a>
   <a class="soc soc-x" href="https://x.com/Saad_Developer_" target="_blank" rel="noopener" aria-label="X (Twitter)" title="X (Twitter)"><svg viewBox="0 0 24 24"><use href="#i-x"/></svg></a>
-  <a class="soc soc-in" href="https://pk.linkedin.com/in/saad-durrani-developer" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24"><use href="#i-in"/></svg></a>
+  <a class="soc soc-tt" href="https://www.tiktok.com/@saaddurranideveloper" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok"><svg viewBox="0 0 24 24"><use href="#i-tt"/></svg></a>
 </div>
         </div>
 
@@ -957,19 +989,26 @@
 
 <footer>
   <div class="wrap footer-inner">
-    <span class="mono">© <span id="year"></span> SAAD DURRANI — WEB DEVELOPMENT</span>
+    <span class="mono">© <span id="year"></span> SAAD DURRANI — Developer</span>
     <div class="footer-links">
       <a class="txt" href="#contact">Contact</a>
       <div class="socials sm">
+        <a class="soc soc-in" href="https://pk.linkedin.com/in/saad-durrani-developer" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24"><use href="#i-in"/></svg></a>
         <a class="soc soc-fb" href="https://www.facebook.com/saad.durani.developer" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24"><use href="#i-fb"/></svg></a>
-        <a class="soc soc-tt" href="https://www.tiktok.com/@saaddurranideveloper" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok"><svg viewBox="0 0 24 24"><use href="#i-tt"/></svg></a>
         <a class="soc soc-ig" href="https://www.instagram.com/saad.durrani.developer" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24"><use href="#i-ig"/></svg></a>
         <a class="soc soc-x" href="https://x.com/Saad_Developer_" target="_blank" rel="noopener" aria-label="X (Twitter)" title="X (Twitter)"><svg viewBox="0 0 24 24"><use href="#i-x"/></svg></a>
-        <a class="soc soc-in" href="https://pk.linkedin.com/in/saad-durrani-developer" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24"><use href="#i-in"/></svg></a>
+        <a class="soc soc-tt" href="https://www.tiktok.com/@saaddurranideveloper" target="_blank" rel="noopener" aria-label="TikTok" title="TikTok"><svg viewBox="0 0 24 24"><use href="#i-tt"/></svg></a>
       </div>
     </div>
   </div>
 </footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close image">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <img id="lightboxImg" src="" alt="">
+</div>
 
 <button id="backToTop" aria-label="Back to top">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
@@ -1001,9 +1040,6 @@
     progress.style.width = pct + '%';
 
     const y = window.scrollY;
-    if (y > 140 && y > lastY){ siteNav.classList.add('nav-hidden'); }
-    else { siteNav.classList.remove('nav-hidden'); }
-    lastY = y;
 
     backToTop.classList.toggle('show', y > 600);
   }, { passive:true });
@@ -1019,6 +1055,25 @@
       </svg>`);
     photo.src = svg;
   }, { once:true });
+
+
+  /* image lightbox */
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  function openLightbox(img){
+    lightboxImg.src = img.currentSrc || img.src;
+    lightboxImg.alt = img.alt || '';
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(){
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('img.zoomable').forEach(img => img.addEventListener('click', () => openLightbox(img)));
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 
   /* reveal on scroll */
   const revealEls = document.querySelectorAll('.reveal');
